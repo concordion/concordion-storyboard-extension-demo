@@ -19,3 +19,7 @@ When I google the following, I expect to see the appropriate answer.
 [Search For]: - "#searchFor"
 [search]: - "#result = searchForTopic(#searchFor)"
 [The Answer]: - "?=#result"
+
+
+## [Child Containers](-)
+Readability of [complex examples](- "?=complexExample(#TEXT)") can often be improved by grouping cards into section containers.

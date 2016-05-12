@@ -3,6 +3,8 @@ package demo;
 import java.io.IOException;
 
 import org.concordion.ext.service.listener.SuccessResponseEvent;
+import org.concordion.ext.storyboard.CardResult;
+import org.concordion.ext.storyboard.StockCardImage;
 
 import demo.driver.google.web.GoogleResultsPage;
 import demo.driver.google.web.GoogleSearchPage;
@@ -48,5 +50,19 @@ public class StoryboardDemoFixture extends FixtureBase {
     	getStoryboard().addSectionContainer(topic);
     	
     	return new GoogleSearchPage(getBrowser(), getBrowserListener()).searchFor(topic).getCalculatorResult();
+    }
+    
+    public String complexExample(String topic) {
+    	getStoryboard().addSectionContainer(topic);
+    	
+    	getStoryboard().insertSectionContainer("Inner Container");
+    	getStoryboard().addNotification("Hello", "This is a section container", "It can often be useful to split a complex example into several steps.", StockCardImage.TEXT, CardResult.SUCCESS);
+    	getStoryboard().closeContainer();
+    	
+    	getStoryboard().addNotification("Hello", "This is a section container", "It can often be useful to split a complex example into several steps.", StockCardImage.TEXT, CardResult.SUCCESS);
+    	
+    	return topic;
+    	
+    
     }
 }

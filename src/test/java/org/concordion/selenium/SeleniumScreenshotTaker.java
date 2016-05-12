@@ -6,8 +6,11 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Iterator;
 
 import javax.imageio.ImageIO;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 
 import org.concordion.ext.ScreenshotTaker;
 import org.concordion.ext.ScreenshotUnavailableException;
@@ -48,11 +51,22 @@ public class SeleniumScreenshotTaker implements ScreenshotTaker {
     }
 
     private Dimension getImageDimension(byte[] screenshot) throws IOException {
-        InputStream in = new ByteArrayInputStream(screenshot);
-        BufferedImage buf = ImageIO.read(in);
+        try (ImageInputStream in = ImageIO.createImageInputStream(new ByteArrayInputStream(screenshot))) {
+            final Iterator<ImageReader> readers = ImageIO.getImageReaders(in);
+            if (readers.hasNext()) {
+                ImageReader reader = readers.next();
+                try {
+                    reader.setInput(in);
+                    return new Dimension(reader.getWidth(0), reader.getHeight(0));
+                } finally {
+                    reader.dispose();
+                }
+            }
+        }
 
-        return new Dimension(buf.getWidth(), buf.getHeight());
+        throw new RuntimeException("Unable to read image dimensions");
     }
+
 
     @Override
     public String getFileExtension() {
