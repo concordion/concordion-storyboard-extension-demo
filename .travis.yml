@@ -1,13 +1,18 @@
 language: java
 jdk:
-- oraclejdk8
-- oraclejdk7
+  - oraclejdk8
 env:
   global:
-  - secure: Aks/9RTuubSZSP5N3Do7uldJk5tpYLcq4atTzhClhV3LkphFzeOhE5WnL1CrwVhSx8wk8LQi6VQcmSt0ayjH1Vi7oABmfWv7YfI6wUaHBmCnb/vTE/ixoxVi5Px3QlOOaKj/xdmgHq/TV97PmGQ4bFU95uBpA+6sQfvf7qw3wLE=
+    - secure: Aks/9RTuubSZSP5N3Do7uldJk5tpYLcq4atTzhClhV3LkphFzeOhE5WnL1CrwVhSx8wk8LQi6VQcmSt0ayjH1Vi7oABmfWv7YfI6wUaHBmCnb/vTE/ixoxVi5Px3QlOOaKj/xdmgHq/TV97PmGQ4bFU95uBpA+6sQfvf7qw3wLE=
+addons:
+  chrome: stable
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install chromium-chromedriver
 before_script:
-- export DISPLAY=:99.0
-- sh -e /etc/init.d/xvfb start
-- sleep 3
+  - export PATH=$PATH:/usr/lib/chromium-browser/
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sleep 3  
 after_success:
-- ".utility/push-output-to-ghpages.sh"
+  - ".utility/push-output-to-ghpages.sh"

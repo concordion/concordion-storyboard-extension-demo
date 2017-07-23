@@ -13,16 +13,17 @@ public class SeleniumEventLogger implements WebDriverEventListener {
     final Logger logger = LoggerFactory.getLogger("selenium.events");
     private String oldValue;
 
+
     @Override
-    public void beforeChangeValueOf(WebElement arg0, WebDriver arg1) {
-        oldValue = arg0.getAttribute("value");
+    public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
+        oldValue = webElement.getAttribute("value");
     }
 
     @Override
-    public void afterChangeValueOf(WebElement arg0, WebDriver arg1) {
-        String elementName = getElementName(arg0);
+    public void afterChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
+        String elementName = getElementName(webElement);
         try {
-            String newValue = arg0.getAttribute("value");
+            String newValue = webElement.getAttribute("value");
             if (!newValue.equals(oldValue)) {
                 if (newValue.length() == 0) {
                     logger.debug("[{}] - cleared value", elementName);
@@ -79,6 +80,26 @@ public class SeleniumEventLogger implements WebDriverEventListener {
 
     @Override
     public void beforeNavigateForward(WebDriver arg0) {
+    }
+
+    @Override
+    public void beforeAlertAccept(WebDriver webDriver) {
+
+    }
+
+    @Override
+    public void afterAlertAccept(WebDriver webDriver) {
+
+    }
+
+    @Override
+    public void afterAlertDismiss(WebDriver webDriver) {
+
+    }
+
+    @Override
+    public void beforeAlertDismiss(WebDriver webDriver) {
+
     }
 
     @Override
