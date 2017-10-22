@@ -52,7 +52,7 @@ public class GoogleSearchPage {
         queryBox.sendKeys(Keys.ESCAPE);
         String description = "Entered search text, and about to click search button";
         listener.pageUpdated(new PageUpdatedEvent(this.getClass().getSimpleName(), description));
-        submitButton.click();
+        queryBox.sendKeys(Keys.RETURN);
         return new GoogleResultsPage(browser, listener);
     }
 }
