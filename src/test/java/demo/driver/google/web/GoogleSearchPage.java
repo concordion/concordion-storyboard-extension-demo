@@ -50,9 +50,9 @@ public class GoogleSearchPage {
     public GoogleResultsPage searchFor(String query) {
         queryBox.sendKeys(query);
         queryBox.sendKeys(Keys.ESCAPE);
-        String description = "Entered search text, and about to click search button";
+        String description = "Entered search text, and about to press return";
         listener.pageUpdated(new PageUpdatedEvent(this.getClass().getSimpleName(), description));
-        submitButton.click();
+        queryBox.sendKeys(Keys.RETURN);
         return new GoogleResultsPage(browser, listener);
     }
 }
