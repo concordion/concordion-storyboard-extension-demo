@@ -12,10 +12,26 @@ public class SeleniumEventLogger extends AbstractWebDriverEventListener {
     final Logger logger = LoggerFactory.getLogger("selenium.events");
     private String oldValue;
 
-
     @Override
     public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
         oldValue = webElement.getAttribute("value");
+    }
+
+    @Override
+    public void afterChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
+        String elementName = getElementName(element);
+        try {
+            String newValue = element.getAttribute("value");
+            if (!newValue.equals(oldValue)) {
+                if (newValue.length() == 0) {
+                    logger.debug("[{}] - cleared value", elementName);
+                } else {
+                    logger.debug("[{}] - changed value to '{}'", elementName, newValue);
+                }
+            }
+        } catch (Exception e) {
+            logger.debug("[{}] - changed value", elementName);
+        }
     }
 
     @Override
