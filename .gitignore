@@ -10,6 +10,8 @@ build/
 bin/
 
 # IDEA
-.idea
-target/
+.idea/
 *.iml
+
+# Maven
+target/

@@ -12,9 +12,10 @@ public class SeleniumEventLogger extends AbstractWebDriverEventListener {
     final Logger logger = LoggerFactory.getLogger("selenium.events");
     private String oldValue;
 
+
     @Override
-    public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
-        logger.debug("[{}] - found", arg0);
+    public void beforeChangeValueOf(WebElement webElement, WebDriver webDriver, CharSequence[] charSequences) {
+        oldValue = webElement.getAttribute("value");
     }
 
     @Override
@@ -35,6 +36,14 @@ public class SeleniumEventLogger extends AbstractWebDriverEventListener {
     @Override
     public void afterScript(String arg0, WebDriver arg1) {
         logger.debug("Ran script '{}'", arg0);
+    }
+
+    @Override
+    public void beforeSwitchToWindow(String windowName, WebDriver driver) {
+    }
+
+    @Override
+    public void afterSwitchToWindow(String windowName, WebDriver driver) {
     }
 
     @Override
