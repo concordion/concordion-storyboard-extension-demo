@@ -4,7 +4,7 @@
 # Introduction
 ------------
 
-This project demonstrates the usage of the [Concordion](http://concordion.org) [Storyboard Extension](http://github.com/concordion/concordion-storyboard-extension) with [Selenium WebDriver](http://docs.seleniumhq.org/projects/webdriver/).
+This project demonstrates the usage of the [Concordion](https://concordion.org) [Storyboard Extension](http://github.com/concordion/concordion-storyboard-extension) with [Selenium WebDriver](http://docs.seleniumhq.org/projects/webdriver/).
 
 Example output is shown [here](http://concordion.github.io/concordion-storyboard-extension-demo/spec/demo/StoryboardDemo.html).
 
