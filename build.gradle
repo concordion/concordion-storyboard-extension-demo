@@ -12,7 +12,7 @@ repositories {
 }
 
 dependencies {
-        testCompile 'org.concordion:concordion:2.1.1'
+        testCompile 'org.concordion:concordion:2.2.0'
         testCompile 'org.concordion:concordion-storyboard-extension:2.0.0'
 
         testCompile 'org.slf4j:slf4j-api:1.7.25'
