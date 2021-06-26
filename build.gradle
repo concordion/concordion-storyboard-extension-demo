@@ -18,6 +18,7 @@ dependencies {
         testCompile 'org.slf4j:slf4j-api:1.7.25'
         testCompile 'ch.qos.logback:logback-classic:1.2.3'
         testCompile 'org.seleniumhq.selenium:selenium-java:3.+'
+		testCompile 'io.github.bonigarcia:webdrivermanager:4.+'
 }
 
 sourceSets {
